@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "d1a741bf-d14c-4de6-af44-0806abdcd6fd",
+		"name": "WiseBuy API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22304559"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"João Machado\",\r\n    \"email\": \"joao.machado@example.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"joao.machado@example.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add list",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMsInN1YiI6ImpvYW8ubWFjaGFkb0BleGFtcGxlLmNvbSIsImlhdCI6MTc1NzI5Mzk1OSwiZXhwIjoxNzYwODkzOTU5fQ.ISC4qhIZLX1YHbrmoMBK3UqvCzZGMDhIIpdrSTuHmXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Groceries list\",\r\n    \"description\": \"A short list of groceries\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/list/addList",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"list",
+						"addList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete list",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsInN1YiI6ImpvYW9AZXhhbXBsZS5jb20iLCJpYXQiOjE3NTcyODkyNDYsImV4cCI6MTc2MDg4OTI0Nn0.08cxVMUnVM5M0OE5RT1aLSO1KcOnJq5WJLa_UYuDRSo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/list/remove/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"list",
+						"remove",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve lists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMsInN1YiI6ImpvYW8ubWFjaGFkb0BleGFtcGxlLmNvbSIsImlhdCI6MTc1NzI5Mzk1OSwiZXhwIjoxNzYwODkzOTU5fQ.ISC4qhIZLX1YHbrmoMBK3UqvCzZGMDhIIpdrSTuHmXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/list",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a single list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMsInN1YiI6ImpvYW8ubWFjaGFkb0BleGFtcGxlLmNvbSIsImlhdCI6MTc1NzI5Mzk1OSwiZXhwIjoxNzYwODkzOTU5fQ.ISC4qhIZLX1YHbrmoMBK3UqvCzZGMDhIIpdrSTuHmXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/list/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"list",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMsInN1YiI6ImpvYW8ubWFjaGFkb0BleGFtcGxlLmNvbSIsImlhdCI6MTc1NzI5Mzk1OSwiZXhwIjoxNzYwODkzOTU5fQ.ISC4qhIZLX1YHbrmoMBK3UqvCzZGMDhIIpdrSTuHmXQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"listId\": 6,\r\n    \"name\": \"Doritos\",\r\n    \"quantity\": 1,\r\n    \"price\": 12.99\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/list/addItem",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"list",
+						"addItem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove item",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMsInN1YiI6ImpvYW8ubWFjaGFkb0BleGFtcGxlLmNvbSIsImlhdCI6MTc1NzI5Mzk1OSwiZXhwIjoxNzYwODkzOTU5fQ.ISC4qhIZLX1YHbrmoMBK3UqvCzZGMDhIIpdrSTuHmXQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/list/removeItem/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"list",
+						"removeItem",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
