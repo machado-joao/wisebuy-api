@@ -15,6 +15,7 @@ public class ItemDTO {
     private String name;
     private Long quantity;
     private BigDecimal price;
+    private Boolean done;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

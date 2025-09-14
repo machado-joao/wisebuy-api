@@ -40,6 +40,9 @@ public class Item {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
+    @Column(name = "done", nullable = false)
+    private Boolean done;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

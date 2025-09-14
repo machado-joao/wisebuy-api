@@ -34,7 +34,8 @@ public class MapperService {
         public ItemDTO mapItemToDTO(Item item) {
                 return ItemDTO.builder().itemId(item.getItemId()).listId(item.getList().getListId())
                                 .name(item.getName())
-                                .quantity(item.getQuantity()).price(item.getPrice()).createdAt(item.getCreatedAt())
+                                .quantity(item.getQuantity()).price(item.getPrice()).done(item.getDone())
+                                .createdAt(item.getCreatedAt())
                                 .updatedAt(item.getUpdatedAt()).build();
         }
 
