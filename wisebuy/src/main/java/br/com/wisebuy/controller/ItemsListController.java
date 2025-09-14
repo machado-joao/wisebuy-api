@@ -57,6 +57,12 @@ public class ItemsListController {
         return itemsListService.addItem(dto, authHeader);
     }
 
+    @PostMapping("/toggleItem/{itemId}")
+    public ResponseEntity<ItemDTO> toggleItem(@PathVariable Long itemId,
+            @RequestHeader("Authorization") String authHeader) {
+        return itemsListService.toggleItem(itemId, authHeader);
+    }
+
     @DeleteMapping("/removeItem/{itemId}")
     public ResponseEntity<Void> removeItem(@PathVariable Long itemId,
             @RequestHeader("Authorization") String authHeader) {

@@ -15,6 +15,7 @@ import br.com.wisebuy.entity.User;
 import br.com.wisebuy.repository.ItemRepository;
 import br.com.wisebuy.repository.ItemsListRepository;
 import br.com.wisebuy.repository.UserRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ItemsListService {
@@ -106,6 +107,23 @@ public class ItemsListService {
         ItemDTO newDTO = mapperService.mapItemToDTO(newItem);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newDTO);
+    }
+
+    @Transactional
+    public ResponseEntity<ItemDTO> toggleItem(Long id, String authHeader) {
+
+        Long userId = extractUserId(authHeader);
+
+        Item item = itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Item não encontrado."));
+        itemsListRepository.findByListIdAndUserId(item.getList().getListId(), userId)
+                .orElseThrow(() -> new IllegalArgumentException("Lista não encontrada."));
+
+        item.setDone(!item.getDone());
+
+        Item newItem = itemRepository.save(item);
+        ItemDTO newDTO = mapperService.mapItemToDTO(newItem);
+
+        return ResponseEntity.status(HttpStatus.OK).body(newDTO);
     }
 
     public ResponseEntity<Void> removeItem(Long itemId, String authHeader) {
