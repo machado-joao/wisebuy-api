@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +27,19 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     private static final String DEFAULT_ROLE = "USER";
 
     public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder,
-            AuthenticationManager authenticationManager, JwtService jwtService) {
+            AuthenticationManager authenticationManager, JwtService jwtService,
+            CustomUserDetailsService customUserDetailsService) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     public ResponseEntity<String> register(SignUpDTO dto) {
@@ -81,6 +85,22 @@ public class UserService {
 
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("E-mail ou senha inválidos.");
+        }
+    }
+
+    public ResponseEntity<Boolean> validateToken(String authHeader) {
+
+        try {
+
+            String token = authHeader.replace("Bearer ", "");
+            String username = jwtService.extractUsername(token);
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+            boolean isValid = jwtService.validateToken(token, userDetails);
+
+            return ResponseEntity.ok(isValid);
+
+        } catch (Exception e) {
+            return ResponseEntity.ok(false);
         }
     }
 
